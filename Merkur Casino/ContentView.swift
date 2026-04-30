@@ -1,21 +1,17 @@
-//
-//  ContentView.swift
-//  Merkur Casino
-//
-//  Created by Алкександр Степанов on 29.04.2026.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("is_user_logged_in") private var isUserLoggedIn = false
+
+    @ViewBuilder
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        if isUserLoggedIn {
+            MainContainerView()
+        } else {
+            LoginView(onSuccess: {
+                isUserLoggedIn = true
+            })
         }
-        .padding()
     }
 }
 
